@@ -9,15 +9,15 @@
 
 ## Запуск проекта
 ```bash
-git clone ...
-docker-compose up --build
+git clone https://github.com/Dewix0/tasker_pet_project.git
+docker-compose up -d --build
+```
 
 
 
 
----
 
-# **Чек-лист по подготовке к собесу**
+# Чек-лист по подготовке к собесу
 
 ### Python
 - Алгоритмы: сортировки, поиск, списки, множества
@@ -45,4 +45,4 @@ docker-compose up --build
 ### Celery
 - Как работает, зачем нужен, пример задачи
 
----
+
