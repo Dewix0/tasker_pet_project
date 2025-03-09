@@ -13,6 +13,12 @@ git clone https://github.com/Dewix0/tasker_pet_project.git
 docker-compose up -d --build
 ```
 
+## API
+	•	GET /api/tasks/ → Получить список задач.
+	•	POST /api/tasks/ → Создать новую задачу.
+	•	GET /api/tasks/1/ → Получить задачу с ID 1.
+	•	PUT /api/tasks/1/ → Обновить задачу с ID 1.
+	•	DELETE /api/tasks/1/ → Удалить задачу с ID 1.
 
 
 
@@ -44,5 +50,8 @@ docker-compose up -d --build
 
 ### Celery
 - Как работает, зачем нужен, пример задачи
+
+
+
 
 
