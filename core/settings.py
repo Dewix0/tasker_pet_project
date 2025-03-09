@@ -1,11 +1,7 @@
-
-
 from pathlib import Path
 import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -28,7 +24,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "tasks",
     "rest_framework",
-    "drf_spectacular", # swager
+    "drf_spectacular",  # swager
 ]
 
 MIDDLEWARE = [
@@ -44,7 +40,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = "core.urls"
 
 REST_FRAMEWORK = {
-    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema', ##swager
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",  #swager
 }
 
 TEMPLATES = [
@@ -120,12 +116,12 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DATABASE_NAME'),
-        'USER': os.getenv('DATABASE_USER'),
-        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
-        'HOST': os.getenv('DATABASE_HOST'),
-        'PORT': os.getenv('DATABASE_PORT'),
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("DATABASE_NAME"),
+        "USER": os.getenv("DATABASE_USER"),
+        "PASSWORD": os.getenv("DATABASE_PASSWORD"),
+        "HOST": os.getenv("DATABASE_HOST"),
+        "PORT": os.getenv("DATABASE_PORT"),
     }
 }
