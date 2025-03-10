@@ -12,6 +12,10 @@ git clone https://github.com/Dewix0/tasker_pet_project.git
 docker-compose up -d --build
 ```
 
+## SWAGER URL
+```
+http://localhost:8000/api/docs/
+```
 
 ### API Эндпоинты
 
