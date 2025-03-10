@@ -5,12 +5,15 @@ from django.contrib.auth.models import User
 
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
-        models = Task
+        model = Task
         fields = "__all__"
+        read_only_fields = ['User_ID']
 
 
 class UserRegisterSerializer(serializers.ModelSerializer):
-    password2 = serializers.CharField(write_only=True)  # Дополнительное поле для подтверждения пароля
+    password2 = serializers.CharField(
+        write_only=True
+    )  # Дополнительное поле для подтверждения пароля
 
     class Meta:
         model = User
@@ -27,9 +30,8 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         validated_data.pop("password2")
         user = User.objects.create_user(**validated_data)
         return user
-    
-class UserLoginSerializer(serializers.ModelSerializer):
-    model=User
-    field=("username","password")
+
+
+class UserLoginSerializer(serializers.Serializer):
     username = serializers.CharField()
     password = serializers.CharField()

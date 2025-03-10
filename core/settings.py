@@ -25,7 +25,7 @@ INSTALLED_APPS = [
     "tasks",
     "rest_framework",
     "drf_spectacular",  # swager
-    'rest_framework.authtoken', #authentication app
+    "rest_framework.authtoken",  # authentication app
 ]
 
 MIDDLEWARE = [
@@ -41,11 +41,10 @@ MIDDLEWARE = [
 ROOT_URLCONF = "core.urls"
 
 REST_FRAMEWORK = {
-    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",  #swager
-
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),                                                                  #authentication module
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",  # swager
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),  # authentication module
 }
 
 TEMPLATES = [
@@ -118,7 +117,7 @@ DATABASES = {
         "NAME": os.getenv("DATABASE_NAME"),
         "USER": os.getenv("DATABASE_USER"),
         "PASSWORD": os.getenv("DATABASE_PASSWORD"),
-        "HOST": os.getenv("DATABASE_HOST","db_project"),
+        "HOST": os.getenv("DATABASE_HOST", "db_project"),
         "PORT": os.getenv("DATABASE_PORT"),
     }
 }
