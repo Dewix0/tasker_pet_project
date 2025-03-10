@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     "tasks",
     "rest_framework",
     "drf_spectacular",  # swager
+    'rest_framework.authtoken', #authentication app
 ]
 
 MIDDLEWARE = [
@@ -41,6 +42,10 @@ ROOT_URLCONF = "core.urls"
 
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",  #swager
+
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),                                                                  #authentication module
 }
 
 TEMPLATES = [
@@ -63,14 +68,6 @@ WSGI_APPLICATION = "core.wsgi.application"
 
 
 # Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
 
 
 # Password validation
@@ -121,7 +118,7 @@ DATABASES = {
         "NAME": os.getenv("DATABASE_NAME"),
         "USER": os.getenv("DATABASE_USER"),
         "PASSWORD": os.getenv("DATABASE_PASSWORD"),
-        "HOST": os.getenv("DATABASE_HOST"),
+        "HOST": os.getenv("DATABASE_HOST","db_project"),
         "PORT": os.getenv("DATABASE_PORT"),
     }
 }

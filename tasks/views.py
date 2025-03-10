@@ -3,8 +3,10 @@ from rest_framework.response import Response
 from rest_framework import status, generics
 from django.shortcuts import get_object_or_404
 from .models import Task
-from .serializers import TaskSerializer, UserRegisterSerializer
+from .serializers import TaskSerializer, UserRegisterSerializer,UserLoginSerializer
 from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.tokens import RefreshToken
+from django.contrib.auth import authenticate
 
 
 class TaskListView(APIView):
@@ -63,3 +65,24 @@ class UserRegisterView(generics.CreateAPIView):
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
+
+
+class UserLoginView(APIView):
+    def post(self, request):
+        serializer = UserLoginSerializer(data=request.data)
+        if serializer.is_valid():
+            username = serializer.validated_data['username']
+            password = serializer.validated_data['password']
+            user = authenticate(username=username, password=password)
+
+            if user is not None:
+                refresh = RefreshToken.for_user(user)
+                return Response({
+                    'refresh': str(refresh),
+                    'access': str(refresh.access_token),
+                }, status=status.HTTP_200_OK)
+            
+            return Response({"detail": "Данные для входа неверны, либо пользователь не найден"}, status=status.HTTP_401_UNAUTHORIZED)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
