@@ -161,31 +161,6 @@ http://localhost:8000/api/docs/
 
 ---
 
-**Частично обновить задачу**  
-`PATCH /api/tasks/{id}/`  
-- **Описание:** Позволяет изменить часть полей задачи.  
-- **Заголовки:**  
-  - `Authorization: Bearer your-access-token`
-- **Тело запроса:**  
-  ```json
-  {
-    "Status": "DN"
-  }
-  ```
-- **Ответ (200 OK):**  
-  ```json
-  {
-    "Task_ID": 2,
-    "User_ID": 1,
-    "Status": "DN",
-    "Description": "Сделать домашнее задание",
-    "Priority": "H",
-    "Deadline": "2025-03-25"
-  }
-  ```
-
----
-
 **Удалить задачу**  
 `DELETE /api/tasks/{id}/`  
 - **Описание:** Удаляет задачу по её ID.  
@@ -197,7 +172,50 @@ http://localhost:8000/api/docs/
     "message": "Вы удалили задачу, без возможности восстановления"
   }
   ```
-```  
+
+---
+
+### Сортировка задач
+
+**Получить список задач с сортировкой**  
+`GET /api/tasks/sorted/<sort_by>/`
+- **Описание:** Получает список задач, отсортированных по дедлайну (`deadline`) или приоритету (`priority`).
+- **Заголовки:**  
+  - `Authorization: Bearer your-access-token`
+- **Пример запроса:**  
+  ```
+  GET /api/tasks/sorted/deadline/
+  GET /api/tasks/sorted/priority/
+  ```
+- **Ответ (200 OK):**  
+  ```json
+  [
+    {
+      "Task_ID": 1,
+      "User_ID": 1,
+      "Status": "NS",
+      "Description": "Купить продукты",
+      "Priority": "H",
+      "Deadline": "2025-03-10"
+    },
+    {
+      "Task_ID": 2,
+      "User_ID": 1,
+      "Status": "ACT",
+      "Description": "Сделать домашнее задание",
+      "Priority": "M",
+      "Deadline": "2025-03-22"
+    }
+  ]
+  ```
+- **Ошибки:**  
+  - **400 Bad Request** – если передан некорректный параметр сортировки.  
+    ```json
+    {
+      "error": "Неверный параметр сортировки"
+    }
+    ```
+
 
 
 
